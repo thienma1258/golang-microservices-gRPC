@@ -1,8 +1,6 @@
 vendor/
 pkg/
 
-Internal/gRPC
-
 # Compiled source #
 *.lock
 *.toml
