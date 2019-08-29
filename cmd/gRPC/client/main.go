@@ -10,7 +10,7 @@ import (
 )
 
 func main(){
-	serverAddress := "localhost7000"
+	serverAddress := "localhost:3333"
 	conn,e := grpc.Dial(serverAddress,grpc.WithInsecure())
 	if e!=nil{
 		log.Fatal("can't connect to server: %v",e.Error())

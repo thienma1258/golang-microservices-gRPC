@@ -7,8 +7,19 @@
  platform-neutral, extensible mechanism for serializing structured data
 * [docker](https://www.docker.com/) - version 18.09.2
 
+## USAGE
+
+ 1. Run simple client and server communicate between gRPC(simple):
+    
+        1.1 . execute go run cmd\gRPC\server\main.go
+        
+        1.2 . execute go run cmd\gRPC\client\main.go
+ 
+ 2 . Microservices patterns with golang communicate between gRPC: 
+ 
+    //TODO
 ## Deployment
-//TODO 
+    //TODO 
 
 ## Description
 This project is for study purpose (microservices patterns communicate between gRPC in golang)

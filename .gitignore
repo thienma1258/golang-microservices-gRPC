@@ -1,11 +1,11 @@
 vendor/
-pkg/
 
 # Compiled source #
-*.lock
-*.toml
-*.pb.go
 *.exe
+*.exe~
+*.dll
+*.so
+*.dylib
 
 #IDEA
 .idea/

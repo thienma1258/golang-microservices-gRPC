@@ -19,11 +19,11 @@ func main() {
 	gRPCServer := grpc.NewServer()
 	repositoryServiceImpl := impl.NewRepositoryServiceGrpcImpl()
 	service.RegisterRepositoryServiceServer(gRPCServer,repositoryServiceImpl)
+	log.Print(CONN_TYPE+"services start in port:"+CONN_PORT)
 
 	if err := gRPCServer.Serve(netListener); err != nil {
 		log.Fatal("fail to serve: %s",err)
 	}
-
 }
 
 func getNetListener() net.Listener {
