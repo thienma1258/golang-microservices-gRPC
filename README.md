@@ -6,7 +6,7 @@
 * [protoc](https://developers.google.com/protocol-buffers/) - Protocol Buffers (a.k.a., protobuf) are Google's language-neutral,
  platform-neutral, extensible mechanism for serializing structured data
 * [docker](https://www.docker.com/) - version 18.09.2
-
+* [GO-SWAGGER](https://github.com/go-swagger/go-swagger) - simple yet powerful representation of your RESTful API.
 ## USAGE
 
  1. Run simple client and server communicate between gRPC(simple):
@@ -21,6 +21,10 @@
 ## Deployment
     //TODO 
 
+## Using protocol buffers with Go
+    protoc.exe -I $env:GOPATH\src --go_out=$env:GOPATH\src $env:GOPATH\src\.*.proto
+       
+    protoc.exe -I $env:GOPATH\src --go_out=plugins=gRPC:$env:GOPATH\src $env:GOPATH\src\.*.proto
 ## Description
 This project is for study purpose (microservices patterns communicate between gRPC in golang)
 
