@@ -8,6 +8,7 @@ import (
 	"golang-microservices-gRPC/src/services/todolist/restapi/operations"
 	"golang-microservices-gRPC/src/services/todolist/restapi/operations/todos"
 	"net/http"
+	"strings"
 	"sync"
 	"sync/atomic"
 
@@ -17,7 +18,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-//go:generate swagger generate server --target .. --name TodoList --spec ../swagger.yml
+//go:generate swagger generate server --target .. --name TodoList --spec ../swagger.yaml
 
 var items = make(map[int64]*models.Item)
 var lastID int64
@@ -152,14 +153,31 @@ func configureTLS(tlsConfig *tls.Config) {
 func configureServer(s *http.Server, scheme, addr string) {
 }
 
-// The middleware configuration is for the handler executors. These do not apply to the swagger.json document.
+// The middleware configuration is for the handler executors. These do not apply to the swagger.yaml document.
 // The middleware executes after routing but before authentication, binding and validation
 func setupMiddlewares(handler http.Handler) http.Handler {
 	return handler
 }
 
-// The middleware configuration happens before anything, this middleware also applies to serving the swagger.json document.
+// The middleware configuration happens before anything, this middleware also applies to serving the swagger.yaml document.
 // So this is a good place to plug in a panic handling middleware, logging and metrics
 func setupGlobalMiddleware(handler http.Handler) http.Handler {
-	return handler
+	return FileServerMiddleware(middleware.Redoc(initRedocOpts(),handler))
+}
+
+func initRedocOpts() middleware.RedocOpts{
+return 	middleware.RedocOpts{
+	SpecURL:"/static/swagger.yaml",
+	Path:"docs",
+}
+}
+
+func FileServerMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if strings.HasPrefix(r.URL.Path,"/static"){
+			http.FileServer(http.Dir("./public")).ServeHTTP(w, r)
+		} else {
+			next.ServeHTTP(w, r)
+		}
+	})
 }

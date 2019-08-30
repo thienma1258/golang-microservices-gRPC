@@ -1,0 +1,45 @@
+get:
+  tags:
+    - todos
+  operationId: findTodos
+  parameters:
+    - name: since
+      in: query
+      type: integer
+      format: int64
+    - name: limit
+      in: query
+      type: integer
+      format: int32
+      default: 20
+  responses:
+    200:
+      description: list the todo operations
+      schema:
+        type: array
+        items:
+          $ref: "/../model/item.yaml#/item"
+    default:
+      description: generic error response
+      schema:
+        $ref: "../model/error.yaml#/error"
+#
+#post:
+#  tags:
+#    - todos
+#  operationId: addOne
+#  parameters:
+#    - name: body
+#      in: body
+#      schema:
+#        $ref: "/../model/item.yaml#/item"
+#  responses:
+#    201:
+#      description: Created
+#      schema:
+#         $ref: "/../model/item.yaml#/item"
+#    default:
+#      description: generic error response
+#      schema:
+#        $ref: "../model/error.yaml#/error"
+

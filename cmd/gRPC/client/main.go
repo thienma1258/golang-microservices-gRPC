@@ -9,13 +9,13 @@ import (
 	"log"
 )
 
-func main(){
+func main() {
 	serverAddress := "localhost:3333"
-	conn,e := grpc.Dial(serverAddress,grpc.WithInsecure())
-	if e!=nil{
-		log.Fatal("can't connect to server: %v",e.Error())
+	conn, e := grpc.Dial(serverAddress, grpc.WithInsecure())
+	if e != nil {
+		log.Fatal("can't connect to server: %v", e.Error())
 	}
-	client:=service.NewRepositoryServiceClient(conn)
+	client := service.NewRepositoryServiceClient(conn)
 	for i := range [10]int{} {
 		repositoryModel := domain.Repository{
 			Id:        int64(i),

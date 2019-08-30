@@ -30,9 +30,10 @@ func init() {
   "swagger": "2.0",
   "info": {
     "description": "From the todo list tutorial on goswagger.io",
-    "title": "A Todo list application",
+    "title": "Todo list",
     "version": "1.0.0"
   },
+  "basePath": "/api",
   "paths": {
     "/": {
       "get": {
@@ -212,9 +213,10 @@ func init() {
   "swagger": "2.0",
   "info": {
     "description": "From the todo list tutorial on goswagger.io",
-    "title": "A Todo list application",
+    "title": "Todo list",
     "version": "1.0.0"
   },
+  "basePath": "/api",
   "paths": {
     "/": {
       "get": {
