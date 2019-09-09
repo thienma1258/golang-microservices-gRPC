@@ -104,7 +104,7 @@ type Server struct {
 	interrupt    chan os.Signal
 }
 
-// Logf logs message either via defined user logger or via system one if no user logger is defined.
+// Logf logs message either via defined template logger or via system one if no template logger is defined.
 func (s *Server) Logf(f string, args ...interface{}) {
 	if s.api != nil && s.api.Logger != nil {
 		s.api.Logger(f, args...)
@@ -113,7 +113,7 @@ func (s *Server) Logf(f string, args ...interface{}) {
 	}
 }
 
-// Fatalf logs message either via defined user logger or via system one if no user logger is defined.
+// Fatalf logs message either via defined template logger or via system one if no template logger is defined.
 // Exits with non-zero status after printing
 func (s *Server) Fatalf(f string, args ...interface{}) {
 	if s.api != nil && s.api.Logger != nil {
