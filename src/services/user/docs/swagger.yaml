@@ -9,30 +9,6 @@ definitions:
       errorMessage:
         type: string
     type: object
-  web.Pet:
-    properties:
-      category:
-        properties:
-          id:
-            type: integer
-          name:
-            type: string
-        type: object
-      id:
-        type: integer
-      name:
-        type: string
-      photoUrls:
-        items:
-          type: string
-        type: array
-      status:
-        type: string
-      tags:
-        items:
-          type: Tag
-        type: array
-    type: object
   web.RevValue:
     properties:
       Data:
@@ -94,13 +70,6 @@ paths:
         name: some_id
         required: true
         type: integer
-      - description: Some ID
-        in: body
-        name: some_id
-        required: true
-        schema:
-          $ref: '#/definitions/web.Pet'
-          type: object
       produces:
       - application/json
       responses:

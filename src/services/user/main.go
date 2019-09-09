@@ -5,8 +5,8 @@ import (
 	"github.com/swaggo/files"
 	"github.com/swaggo/gin-swagger"
 	_ "github.com/swaggo/swag/example/celler/controller"
-	"golang-microservices-gRPC/src/services/FAQ/controller"
-	"golang-microservices-gRPC/src/services/FAQ/docs"
+	"golang-microservices-gRPC/src/services/user/controller"
+	"golang-microservices-gRPC/src/services/user/docs"
 )
 
 // @contact.name API Support
@@ -22,18 +22,19 @@ func main() {
 	docs.SwaggerInfo.Title = "Swagger Example API"
 	docs.SwaggerInfo.Description = "This is a sample server Petstore server."
 	docs.SwaggerInfo.Version = "1.0"
-	docs.SwaggerInfo.Host = "petstore.swagger.io"
+	docs.SwaggerInfo.Host = "localhost:9080"
 	docs.SwaggerInfo.BasePath = "/v2"
 	docs.SwaggerInfo.Schemes = []string{"http", "https"}
 
 	r := gin.New()
-	r.GET("/testapi/get-string-by-int/:some_id", controller.GetStringByInt)
-	r.GET("//testapi/get-struct-array-by-string/:some_id", controller.GetStructArrayByString)
-	r.POST("/testapi/upload", controller.Upload)
+	var v2Grouping=r.Group("v2");
+	v2Grouping.GET("/testapi/get-string-by-int/:some_id", controller.GetStringByInt)
+	v2Grouping.GET("//testapi/get-struct-array-by-string/:some_id", controller.GetStructArrayByString)
+	v2Grouping.POST("/testapi/upload", controller.Upload)
 	// use ginSwagger middleware to serve the API docs
-	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	v2Grouping.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
-	r.Run()
+	r.Run("localhost:9080")
 }
 
 //...

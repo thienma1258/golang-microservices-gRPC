@@ -1,4 +1,4 @@
-module golang-microservices-gRPC/src/services/FAQ
+module golang-microservices-gRPC/src/services/user
 
 // go: no requirements found in Gopkg.lock
 
@@ -7,6 +7,7 @@ require (
 	github.com/gin-gonic/gin v1.4.0
 	github.com/go-openapi/spec v0.19.2 // indirect
 	github.com/go-openapi/swag v0.19.5 // indirect
+	github.com/jinzhu/gorm v1.9.10
 	github.com/mailru/easyjson v0.0.0-20190626092158-b2ccc519800e // indirect
 	github.com/satori/go.uuid v1.2.0 // indirect
 	github.com/stretchr/testify v1.4.0 // indirect

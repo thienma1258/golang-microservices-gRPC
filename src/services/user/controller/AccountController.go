@@ -2,7 +2,8 @@ package controller
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/swaggo/swag/example/basic/web"
+	_ "github.com/swaggo/swag/example/basic/web"
+	"net/http"
 )
 
 // GetStringByInt example
@@ -12,17 +13,18 @@ import (
 // @Accept  json
 // @Produce  json
 // @Param   some_id      path   int     true  "Some ID"
-// @Param   some_id      body web.Pet true  "Some ID"
 // @Success 200 {string} string	"ok"
 // @Failure 400 {object} web.APIError "We need ID!!"
 // @Failure 404 {object} web.APIError "Can not find ID"
 // @Router /testapi/get-string-by-int/{some_id} [get]
 func GetStringByInt(c *gin.Context) {
-	var pet web.Pet
-	if err := c.ShouldBindJSON(&pet); err != nil {
-		// write your code
-		return
-	}
+	//var pet web.Pet
+	//if err := c.ShouldBindJSON(&pet); err != nil {
+	//	// write your code
+	//	c.JSON(http.StatusBadRequest,c.Errors)
+	//	return
+	//}
+	c.JSON(http.StatusOK,"found ID pet at :"+c.Param("some_id"))
 
 	// write your code
 }
