@@ -26,7 +26,6 @@ func main() {
 	docs.SwaggerInfo.Host = "localhost:9080"
 	docs.SwaggerInfo.BasePath = "/v2"
 	docs.SwaggerInfo.Schemes = []string{"http", "https"}
-
 	r := gin.New()
 	var v2Grouping = r.Group("v2")
 	v2Grouping.GET("/testapi/get-string-by-int/:some_id", controller.GetStringByInt)
